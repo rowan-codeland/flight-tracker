@@ -1,3 +1,5 @@
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
 const api_url = "https://opensky-network.org/api/states/all"
 
 
@@ -37,6 +39,7 @@ async function getData() {
         }
         console.log(longLat);
 }
+
 getData();
 
         // var longLat = state
