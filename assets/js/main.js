@@ -54,6 +54,8 @@ async function getData() {
 
 getData();
 
+setInterval(getData, 10000);
+
         // var latLong = state
         
         // for(let i=0; i < 10; i++){
