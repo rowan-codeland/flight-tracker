@@ -1,4 +1,7 @@
-const mymap = L.map('mapid').setView([53.14 , -7.69], 7);
+//MAP LOAD//
+
+const mymap = L.map('mapid').setView([39 , -80.5], 6);
+// const marker = L.marker([0, 0]).addTo(mymap);
 
 const attribution = 
     '&copy; <a href="https://www.openstreetmap.org/copyright">"Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>';
@@ -7,6 +10,10 @@ let tileUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{
 let tiles = L.tileLayer(tileUrl, {attribution});
 tiles.addTo(mymap);
 
+//MAP MARKERS//
+
+//API LOAD//
+
 const api_url = "https://opensky-network.org/api/states/all"
 
 
@@ -14,7 +21,7 @@ async function getData() {
     let response = await fetch(api_url);
     let data = await response.json();
     let state = data.states;
-    let longLat = [];
+    let latLong = [];
 
     let dataObject = state.map(item => {
         return {
@@ -39,17 +46,15 @@ async function getData() {
     });
 
         for(let i = 0; i < 10; i++){
-        longLat[i] = {
-            long: dataObject[i].longitude,
-            lat: dataObject[i].latitude
+            L.marker([dataObject[i].latitude, dataObject[i].longitude]).addTo(mymap);
+            // latitude: dataObject[i].latitude,
+            // longitude: dataObject[i].longitude
             }
         }
-        console.log(longLat);
-}
 
 getData();
 
-        // var longLat = state
+        // var latLong = state
         
         // for(let i=0; i < 10; i++){
         //         state[i] = { 
@@ -58,7 +63,7 @@ getData();
         //         };
         //     }
         // };
-        // console.log(longLat);
+        // console.log(latLong);
 
 // Example
 
