@@ -1,4 +1,11 @@
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+const mymap = L.map('mapid').setView([53.14 , -7.69], 7);
+
+const attribution = 
+    '&copy; <a href="https://www.openstreetmap.org/copyright">"Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>';
+
+let tileUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+let tiles = L.tileLayer(tileUrl, {attribution});
+tiles.addTo(mymap);
 
 const api_url = "https://opensky-network.org/api/states/all"
 
