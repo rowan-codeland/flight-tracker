@@ -21,51 +21,30 @@ async function getData() {
     let response = await fetch(api_url);
     let data = await response.json();
     let state = data.states;
-    for(let i = 0; i < state.length; i++){
-        for(let j = 0; j < [i].length; j++){
-        let select = document.getElementById("select")
-        let option = document.createElement("OPTION"),
-            txt = document.createTextNode(state[i][2]);
-        option.appendChild(txt);
-            select.insertBefore(option,select.lastChild);
-                    console.log(state[i]);
-        }
+    let countryList = [];
 
+    for(let i = 0; i < state.length; i++){
+        if(countryList.includes(state[i][2])){}
+        else {
+            countryList.push(state[i][2]);
+        }
     }
 
-
-
+    let select = document.getElementById("select");
+        for(let i = 0; i < countryList.length; i++){
+            let option = document.createElement("OPTION"),
+                txt = document.createTextNode(countryList[i]);
+            option.appendChild(txt);
+            option.setAttribute("value",countryList[i]);
+            select.insertBefore(option,select.lastChild);
+            // option.sort();
+        }
 
 
     // let latLong = [];
 
-    // let dataObject = state.map(item => {
-    //     return {
-    //         icao24: item[0],
-    //         callsign: item[1],
-    //         origin_country: item[2],
-    //         time_position: item[3],
-    //         last_contact: item[4],
-    //         longitude: item[5],
-    //         latitude: item[6],
-    //         baro_altitude: item[7],
-    //         on_ground: item[8],
-    //         velocity: item[9],
-    //         true_track: item[10],
-    //         vertical_rate: item[11],
-    //         sensors: item[12],
-    //         geo_altitude: item[13],
-    //         squawk: item[14],
-    //         spi: item[15],
-    //         position_source: item[16]
-    //     }
-    // });
-        
 
-
-
-}
-
+    }
 getData();
 
     // for(let i = 0; i < 10; i++){
