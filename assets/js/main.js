@@ -24,20 +24,18 @@ async function getData() {
     let countryList = [];
 
     for(let i = 0; i < state.length; i++){
-        if(countryList.includes(state[i][2])){}
+        if(countryList.includes(state[i][2]) || state[i][2] === ""){}
         else {
             countryList.push(state[i][2]);
         }
     }
-    // Sort alphabetically
+    // Sort Alphabetically
     countryList.sort(function (country1, country2) {
-	if (country1 > country2) {
-        return 1;
-    } else {
-		return -1;
-	}
-});
-
+    if (country1 > country2) {
+        return 1;} 
+        else {
+		return -1;}
+    });
 
     let select = document.getElementById("select");
         for(let i = 0; i < countryList.length; i++){
@@ -46,6 +44,7 @@ async function getData() {
             option.appendChild(txt);
             option.setAttribute("value",countryList[i]);
             select.insertBefore(option,select.lastChild);
+            // option.sort();
         }
     }
 getData();
