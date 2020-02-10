@@ -12,7 +12,7 @@ tiles.addTo(mymap);
 
 //MAP MARKERS//
 
-//API LOAD//
+//api load//
 
 const api_url = "https://opensky-network.org/api/states/all"
 
@@ -22,6 +22,9 @@ async function getData() {
     let data = await response.json();
     let state = data.states;
     let countryList = [];
+    let mapData = [];
+
+// Push countries and remove duplicates
 
     for (let i = 0; i < state.length; i++) {
         if (countryList.includes(state[i][2]) || state[i][2] === "") { }
@@ -29,7 +32,8 @@ async function getData() {
             countryList.push(state[i][2]);
         }
     }
-    // Sort Alphabetically
+// Sort Alphabetically
+    
     countryList.sort(function (country1, country2) {
         if (country1 > country2) {
             return 1;
@@ -38,6 +42,8 @@ async function getData() {
             return -1;
         }
     });
+
+// Add countries to dropdown
 
     let select = document.getElementById("select");
     for (let i = 0; i < countryList.length; i++) {
@@ -48,50 +54,47 @@ async function getData() {
         select.insertBefore(option, select.lastChild);
     }
 
-    //search countries
+//Search countries
     document.getElementById("select").addEventListener("change", selectChanged)
     function selectChanged() {
-        var xyz = document.getElementById("select").value;
+        var countrySearch = document.getElementById("select").value;
             for(let i = 0; i < state.length; i++){
-            if(state[i][2] == xyz){
-            console.log("success")
-        }
-
-        // else {
-        //     countryList.push(state[i][2]);
-        // }
-
-        // document.getElementById("demo").innerHTML = "You sekected:" + xyz;
-        // console.log(xyz);
+                for(let j = 0; j <= [i].length; j++){
+                    if(state[i][2] === countrySearch){ 
+                        console.log(state[i]);
+            } 
     }
     }
+    console.log(mapData);
+}
 }
 getData();
-//search countries
+
+// for(let i = 0; i < 10; i++){
+//     L.polyline(([dataObject[i].latitude, dataObject[i].longitude]), {color: 'red'}).addTo(mymap);
+//     // L.marker([dataObject[i].latitude, dataObject[i].longitude]).addTo(mymap);
+//     // latitude: dataObject[i].latitude,
+//     // longitude: dataObject[i].longitude
+//     }
 
 
-    // for(let i = 0; i < 10; i++){
-    //     L.polyline(([dataObject[i].latitude, dataObject[i].longitude]), {color: 'red'}).addTo(mymap);
-    //     // L.marker([dataObject[i].latitude, dataObject[i].longitude]).addTo(mymap);
-    //     // latitude: dataObject[i].latitude,
-    //     // longitude: dataObject[i].longitude
-    //     }
-
+// document.getElementById("demo").innerHTML = "You sekected:" + xyz;
+// console.log(xyz);
 // setInterval(getData, 1000);
 
 
 
 
-        // var latLong = state
+// var latLong = state
 
-        // for(let i=0; i < 10; i++){
-        //         state[i] = { 
-        //             long: i+1,
-        //             lat: i+1
-        //         };
-        //     }
-        // };
-        // console.log(latLong);
+// for(let i=0; i < 10; i++){
+//         state[i] = { 
+//             long: i+1,
+//             lat: i+1
+//         };
+//     }
+// };
+// console.log(latLong);
 
 // Example
 
