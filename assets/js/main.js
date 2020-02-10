@@ -23,38 +23,52 @@ async function getData() {
     let state = data.states;
     let countryList = [];
 
-    for(let i = 0; i < state.length; i++){
-        if(countryList.includes(state[i][2]) || state[i][2] === ""){}
+    for (let i = 0; i < state.length; i++) {
+        if (countryList.includes(state[i][2]) || state[i][2] === "") { }
         else {
             countryList.push(state[i][2]);
         }
     }
     // Sort Alphabetically
     countryList.sort(function (country1, country2) {
-    if (country1 > country2) {
-        return 1;} 
+        if (country1 > country2) {
+            return 1;
+        }
         else {
-		return -1;}
+            return -1;
+        }
     });
 
     let select = document.getElementById("select");
-        for(let i = 0; i < countryList.length; i++){
-            let option = document.createElement("OPTION"),
-                txt = document.createTextNode(countryList[i]);
-            option.appendChild(txt);
-            option.setAttribute("value",countryList[i]);
-            select.insertBefore(option,select.lastChild);
-        }
-    }
-getData();
-//search countries    
-function searchFunction(){
-    var xyz = document.getElementById("select").value;
-    document.getElementById("demo").innerHTML = "You sekected:" + xyz;
-    console.log(xyz);
+    for (let i = 0; i < countryList.length; i++) {
+        let option = document.createElement("OPTION"),
+            txt = document.createTextNode(countryList[i]);
+        option.appendChild(txt);
+        option.setAttribute("value", countryList[i]);
+        select.insertBefore(option, select.lastChild);
     }
 
-searchFunction();
+    //search countries
+    document.getElementById("select").addEventListener("change", selectChanged)
+    function selectChanged() {
+        var xyz = document.getElementById("select").value;
+            for(let i = 0; i < state.length; i++){
+            if(state[i][2] == xyz){
+            console.log("success")
+        }
+
+        // else {
+        //     countryList.push(state[i][2]);
+        // }
+
+        // document.getElementById("demo").innerHTML = "You sekected:" + xyz;
+        // console.log(xyz);
+    }
+    }
+}
+getData();
+//search countries
+
 
     // for(let i = 0; i < 10; i++){
     //     L.polyline(([dataObject[i].latitude, dataObject[i].longitude]), {color: 'red'}).addTo(mymap);
