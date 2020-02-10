@@ -44,10 +44,17 @@ async function getData() {
             option.appendChild(txt);
             option.setAttribute("value",countryList[i]);
             select.insertBefore(option,select.lastChild);
-            // option.sort();
         }
     }
 getData();
+//search countries    
+function searchFunction(){
+    var xyz = document.getElementById("select").value;
+    document.getElementById("demo").innerHTML = "You sekected:" + xyz;
+    console.log(xyz);
+    }
+
+searchFunction();
 
     // for(let i = 0; i < 10; i++){
     //     L.polyline(([dataObject[i].latitude, dataObject[i].longitude]), {color: 'red'}).addTo(mymap);
