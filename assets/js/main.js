@@ -57,6 +57,7 @@ async function getData() {
 //Search countries
     document.getElementById("select").addEventListener("change", selectChanged)
     function selectChanged() {
+        let mapData = [];
         var countrySearch = document.getElementById("select").value;
             for(let i = 0; i < state.length; i++){
                 for(let j = 0; j <= [i].length; j++){
