@@ -61,7 +61,7 @@ async function getData() {
             for(let i = 0; i < state.length; i++){
                 for(let j = 0; j <= [i].length; j++){
                     if(state[i][2] === countrySearch){ 
-                        console.log(state[i]);
+                        mapData.push(state[i]);
             } 
     }
     }
