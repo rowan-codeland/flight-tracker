@@ -62,6 +62,10 @@ async function getData() {
             }
         }
     }
+    document.getElementById("truebutton").addEventListener("click", clickedRadio);
+    function clickedRadio(){
+        console.log("test");
+    }
 }
 
     // if (document.getElementById("trueButton").checked){
