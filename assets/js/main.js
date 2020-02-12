@@ -62,22 +62,29 @@ async function getData() {
             }
         }
     }
-    document.getElementById("truebutton").addEventListener("click", clickedRadio);
-    function clickedRadio(){
-        console.log("test");
-    }
-}
 
-    // if (document.getElementById("trueButton").checked){
-    //     var trueValue = document.getElementById("trueButton").value;
-    //     for (let i = 0; i < state.length; i++) {
-    //         if (state[i][8] === trueValue) {
-    //             mapData.push(state[i]);
-    //         }
-    //     }
-    //     console.log(mapData);
-    // };    
-    getData();
+    //Flights on the ground
+    document.getElementById("truebutton").addEventListener("click", clickedTrue);
+    function clickedTrue(){
+        for (let i = 0; i < state.length; i++) {
+            if (state[i][8] === true) {
+                mapData.push(state[i]);
+            }
+        }
+    }
+
+    //Flights in the air
+    document.getElementById("falsebutton").addEventListener("click", clickedFalse);
+    function clickedFalse(){
+        for (let i = 0; i < state.length; i++) {
+            if (state[i][8] === false) {
+                mapData.push(state[i]);
+            }
+        }
+        console.log(mapData);
+    }    
+}
+getData();
 
 
 // let dataObject = mapData.map(item => {
