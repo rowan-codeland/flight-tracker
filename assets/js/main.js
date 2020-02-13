@@ -7,8 +7,9 @@ const tiles = L.tileLayer(tileUrl, { attribution });
 tiles.addTo(myMap);
 
 var state = [];
-console.log(state);
-//html button function - This was moved outside of getData(); as it needed to be read by the HTML @ index.html (line 33). Works if you comment out lines 14-18 and use uncomment console.log on line 19. Needs to access array called state from within the getData function
+
+//html button function 
+
 function displayMyData() {
     let testingThis = document.getElementsByName("ground");
     if (testingThis[0].checked) {
@@ -17,7 +18,6 @@ function displayMyData() {
                 console.log(state[i]);
             }
         }
-        // console.log("hello this is a test")
     }
 }
 
@@ -39,7 +39,7 @@ function getData() {
         state = data;
         let countryList = [];
 
-        //mapData - everychaning array that filtered data get's pushed to. this array is used to load flights to map//
+        //mapData - everychanging array that filtered data get's pushed to. this array is used to load flights to map//
         let mapData = [];
 
 
@@ -87,8 +87,6 @@ function getData() {
                 }
             }
         }
-
-        displayMyData();
     });
 
 }
