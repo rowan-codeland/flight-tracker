@@ -6,6 +6,7 @@ const tileUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}
 const tiles = L.tileLayer(tileUrl, { attribution });
 tiles.addTo(myMap);
 
+var refinedCountry = [];
 var state = [];
 
 //html button function 
@@ -13,10 +14,29 @@ var state = [];
 function displayMyData() {
     let testingThis = document.getElementsByName("ground");
     if (testingThis[0].checked) {
-        for (let i = 0; i < state.length; i++) {
-            if (state[i][8] === true) {
-                console.log(state[i]);
+        for (let i = 0; i < refinedCountry.length; i++) {
+            if (refinedCountry[i][8] === true) {
+                refinedCountry.pop(refinedCountry[i]);
+                
             }
+        }
+    }
+    else {       
+    for (let i = 0; i < refinedCountry.length; i++) {
+            if (refinedCountry[i][8] === false) {
+                refinedCountry.pop(refinedCountry[i]);
+                
+            }
+        }
+    }
+    drawToMap();
+}
+
+function drawToMap() {
+    console.log(refinedCountry)
+    for (let i = 0; i < refinedCountry.length; i++) {
+        if (refinedCountry[i][5] != null || refinedCountry[i][6] != null) {
+            let marker = L.marker([refinedCountry[i][6], refinedCountry[i][5]]).addTo(myMap);
         }
     }
 }
@@ -40,7 +60,6 @@ function getData() {
         let countryList = [];
 
         //mapData - everychanging array that filtered data get's pushed to. this array is used to load flights to map//
-        let mapData = [];
 
 
         // Remove duplicate countries from API and push to countryList array
@@ -59,7 +78,7 @@ function getData() {
                 return -1;
             }
         });
-
+        // state = countryList;
         // Add countries to dropdown
         let select = document.getElementById("select");
         for (let i = 0; i < countryList.length; i++) {
@@ -72,25 +91,23 @@ function getData() {
 
         // Search countries from dropdown
         document.getElementById("select").addEventListener("change", selectChanged);
-        function selectChanged() {
-            mapData = [];
-            let countrySearch = document.getElementById("select").value;
-            for (let i = 0; i < state.length; i++) {
-                if (state[i][2] === countrySearch) {
-                    mapData.push(state[i]);
-                }
-                //Add flights with matching country to map
-            }
-            for (let i = 0; i < mapData.length; i++) {
-                if (mapData[i][5] != null || mapData[i][6] != null) {
-                    let marker = L.marker([mapData[i][6], mapData[i][5]]).addTo(myMap);
-                }
-            }
-        }
-    });
 
+    });
 }
 getData();
+
+function selectChanged() {
+    refinedCountry = [];
+    let countrySearch = document.getElementById("select").value;
+    for (let i = 0; i < state.length; i++) {
+        if (state[i][2] === countrySearch) {
+            refinedCountry.push(state[i]);
+        }
+        //Add flights with matching country to map
+    }
+
+    console.log(refinedCountry)
+}
 
 
 //----Slider Element----//
