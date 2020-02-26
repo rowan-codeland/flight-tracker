@@ -19,9 +19,16 @@ function displayMyData() {
         drawToMap();
     }
     else if (testingThis[1].checked) {
+        for (let i = 0; i < refinedCountry.length; i++) {
+            if (refinedCountry[i][8] == true) {
+                refinedCountry.pop(refinedCountry[i]);
+            }
+        }
+        console.log(refinedCountry);
         drawToMap();
     }
 }
+
 
 function drawToMap() {
     console.log(refinedCountry)
@@ -99,6 +106,8 @@ function selectChanged() {
 
     console.log(refinedCountry)
 }
+
+
 
 
 //----Slider Element----//
