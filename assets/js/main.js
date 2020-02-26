@@ -107,7 +107,15 @@ function selectChanged() {
     console.log(refinedCountry)
 }
 
+var myVar;
+function myFunction() {
+  myVar = setInterval(every2sec, 5000);
+}
 
+function every2sec() { 
+  drawToMap();
+}
+myFunction();
 
 
 //----Slider Element----//
