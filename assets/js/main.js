@@ -25,6 +25,7 @@ function displayMyData() {
 
 function drawToMap() {
     console.log(refinedCountry)
+    markers.clearLayers();
     for (let i = 0; i < refinedCountry.length; i++) {
         if (refinedCountry[i][5] != null || refinedCountry[i][6] != null) {
             let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]]);
