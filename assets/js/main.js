@@ -1,45 +1,38 @@
-//Loading map
-const myMap = L.map('mapid').setView([39, -80.5], 6);
-const attribution =
-    '&copy; <a href="https://www.openstreetmap.org/copyright">"Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.</a>';
-const tileUrl = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-const tiles = L.tileLayer(tileUrl, { attribution });
-tiles.addTo(myMap);
+let map = L.map('mapid', { center: [51.505, -0.09], zoom: 13 }),
+    markers = new L.LayerGroup().addTo(map);
+
+L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png").addTo(map);
 
 var refinedCountry = [];
 var state = [];
 
 //html button function 
-
 function displayMyData() {
     let testingThis = document.getElementsByName("ground");
     if (testingThis[0].checked) {
         for (let i = 0; i < refinedCountry.length; i++) {
-            if (refinedCountry[i][8] === true) {
+            if (refinedCountry[i][8] != true) {
                 refinedCountry.pop(refinedCountry[i]);
-                
             }
         }
+        console.log(refinedCountry);
+        drawToMap();
     }
-    else {       
-    for (let i = 0; i < refinedCountry.length; i++) {
-            if (refinedCountry[i][8] === false) {
-                refinedCountry.pop(refinedCountry[i]);
-                
-            }
-        }
+    else if (testingThis[1].checked) {
+        drawToMap();
     }
-    drawToMap();
 }
 
 function drawToMap() {
     console.log(refinedCountry)
     for (let i = 0; i < refinedCountry.length; i++) {
         if (refinedCountry[i][5] != null || refinedCountry[i][6] != null) {
-            let marker = L.marker([refinedCountry[i][6], refinedCountry[i][5]]).addTo(myMap);
+            let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]]);
+            flightsGeo.addTo(markers);
         }
     }
 }
+
 
 //api load//
 const api_url = "https://opensky-network.org/api/states/all"
@@ -59,9 +52,6 @@ function getData() {
         state = data;
         let countryList = [];
 
-        //mapData - everychanging array that filtered data get's pushed to. this array is used to load flights to map//
-
-
         // Remove duplicate countries from API and push to countryList array
         for (let i = 0; i < state.length; i++) {
             if (countryList.includes(state[i][2]) || state[i][2] === "") { }
@@ -78,7 +68,7 @@ function getData() {
                 return -1;
             }
         });
-        // state = countryList;
+
         // Add countries to dropdown
         let select = document.getElementById("select");
         for (let i = 0; i < countryList.length; i++) {
