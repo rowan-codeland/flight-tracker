@@ -109,11 +109,13 @@ function selectChanged() {
 
 var myVar;
 function myFunction() {
-  myVar = setInterval(every2sec, 5000);
+    myVar = setInterval(every5sec, 5000);
 }
 
-function every2sec() { 
-  drawToMap();
+function every5sec() {
+    getData();
+    selectChanged();
+    displayMyData();
 }
 myFunction();
 
