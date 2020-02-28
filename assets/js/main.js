@@ -8,9 +8,8 @@ var state = [];
 
 var orangeIcon = L.icon({
     iconUrl: 'assets/images/circle.png',
-
     iconSize:     [10, 10], // size of the icon
-    iconAnchor:   [0,0], // point of the icon which will correspond to marker's location
+    iconAnchor:   [5,5], // point of the icon which will correspond to marker's location
     popupAnchor:  [0,0] // point from which the popup should open relative to the iconAnchor
 });
 
@@ -23,7 +22,6 @@ function displayMyData() {
                 refinedCountry.pop(refinedCountry[i]);
             }
         }
-        console.log(refinedCountry);
         drawToMap();
     }
     else if (testingThis[1].checked) {
@@ -32,18 +30,17 @@ function displayMyData() {
                 refinedCountry.pop(refinedCountry[i]);
             }
         }
-        console.log(refinedCountry);
         drawToMap();
     }
 }
 
 
 function drawToMap() {
-    console.log(refinedCountry)
     markers.clearLayers();
     for (let i = 0; i < refinedCountry.length; i++) {
         if (refinedCountry[i][5] != null || refinedCountry[i][6] != null) {
-            let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]], {icon: orangeIcon});
+            // let callsign = (refinedCountry[i][1]);
+            let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]], {icon: orangeIcon}).bindPopup(('Call Sign: ' + refinedCountry[i][1]));
             flightsGeo.addTo(markers);
         }
     }
@@ -100,7 +97,6 @@ function getData() {
 
     });
 }
-getData();
 
 function selectChanged() {
     refinedCountry = [];
