@@ -3,7 +3,7 @@
     margin: 0px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     #mapid { 
     height: 60vh; 
     margin: 0px;
