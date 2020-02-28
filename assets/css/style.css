@@ -1,4 +1,11 @@
 #mapid { 
-    height: 90vh; 
+    height: 80vh; 
     margin: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+    #mapid { 
+    height: 60vh; 
+    margin: 0px;
+}
 }

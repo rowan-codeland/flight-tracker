@@ -1,4 +1,4 @@
-let map = L.map('mapid', { center: [51.505, -0.09], zoom: 13 }),
+let map = L.map('mapid', { center: [51.505, -0.09], zoom: 6 }),
     markers = new L.LayerGroup().addTo(map);
 
 L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png").addTo(map);
