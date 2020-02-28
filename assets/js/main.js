@@ -13,6 +13,8 @@ var orangeIcon = L.icon({
     popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 
+document.getElementById("airbutton").checked = true;
+
 //html button function 
 function displayMyData() {
     let testingThis = document.getElementsByName("ground");
