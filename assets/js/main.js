@@ -8,9 +8,9 @@ var state = [];
 
 var orangeIcon = L.icon({
     iconUrl: 'assets/images/circle.png',
-    iconSize:     [10, 10], // size of the icon
-    iconAnchor:   [5,5], // point of the icon which will correspond to marker's location
-    popupAnchor:  [0,0] // point from which the popup should open relative to the iconAnchor
+    iconSize: [10, 10], // size of the icon
+    iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 
 //html button function 
@@ -39,8 +39,11 @@ function drawToMap() {
     markers.clearLayers();
     for (let i = 0; i < refinedCountry.length; i++) {
         if (refinedCountry[i][5] != null || refinedCountry[i][6] != null) {
-            // let callsign = (refinedCountry[i][1]);
-            let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]], {icon: orangeIcon}).bindPopup(('Call Sign: ' + refinedCountry[i][1]));
+            let speed = (refinedCountry[i][9] * 3.6);
+            let flightsGeo = L.marker(
+                [refinedCountry[i][6], refinedCountry[i][5]],
+                { icon: orangeIcon }).bindPopup(('Call Sign: ' + refinedCountry[i][1] + '<br> Speed: ' + Math.round(speed) + 'km/h')
+                );
             flightsGeo.addTo(markers);
         }
     }
