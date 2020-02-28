@@ -6,6 +6,17 @@ L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
 var refinedCountry = [];
 var state = [];
 
+var greenIcon = L.icon({
+    iconUrl: 'assets/images/leaf-green.png',
+    shadowUrl: 'assets/images/leaf-green.png',
+
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 //html button function 
 function displayMyData() {
     let testingThis = document.getElementsByName("ground");
@@ -35,7 +46,7 @@ function drawToMap() {
     markers.clearLayers();
     for (let i = 0; i < refinedCountry.length; i++) {
         if (refinedCountry[i][5] != null || refinedCountry[i][6] != null) {
-            let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]]);
+            let flightsGeo = L.marker([refinedCountry[i][6], refinedCountry[i][5]], {icon: greenIcon});
             flightsGeo.addTo(markers);
         }
     }
