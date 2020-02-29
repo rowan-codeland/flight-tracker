@@ -1,6 +1,8 @@
+//setting map and markers layer up
 let map = L.map('mapid', { center: [53.35, -6.26], zoom: 6, minZoom: 4, maxZoom: 8 }),
     markers = new L.LayerGroup().addTo(map);
 
+//adding tiles for design
 L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png").addTo(map);
 
 var refinedCountry = [];
@@ -8,9 +10,9 @@ var state = [];
 
 var orangeIcon = L.icon({
     iconUrl: 'assets/images/circle.png',
-    iconSize: [10, 10], // size of the icon
-    iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+    iconSize: [10, 10],
+    iconAnchor: [5, 5],
+    popupAnchor: [0, 0]
 });
 
 document.getElementById("airbutton").checked = true;
@@ -52,7 +54,7 @@ function drawToMap() {
 }
 
 
-//api load//
+//api load
 const api_url = "https://opensky-network.org/api/states/all"
 
 async function testGetData() {
@@ -62,10 +64,7 @@ async function testGetData() {
 }
 
 function getData() {
-    //   let response = await fetch(api_url);
-    // let data = await response.json();
 
-    //drill down to array containing flights (console.log(state); returns all flights)//
     testGetData().then(function (data) {
         state = data;
         let countryList = [];
@@ -88,7 +87,6 @@ function getData() {
         });
 
         // Add countries to dropdown
-
         let select = document.getElementById("select");
         for (let i = 0; i < countryList.length; i++) {
             let option = document.createElement("OPTION"),
@@ -104,6 +102,9 @@ function getData() {
     });
 }
 
+
+document.getElementById("select").addEventListener("change", selectChanged);
+
 function selectChanged() {
     refinedCountry = [];
     let countrySearch = document.getElementById("select").value;
@@ -111,18 +112,13 @@ function selectChanged() {
         if (state[i][2] === countrySearch) {
             refinedCountry.push(state[i]);
         }
-        //Add flights with matching country to map
     }
-
-    console.log(refinedCountry)
 }
 
-
-window.onload = every5sec()
-
-var myVar;
-function myFunction() {
-    myVar = setInterval(every5sec, 5000);
+//refresh data every 5 seconds and calls functions neeccesary to display to map
+let timing;
+function timer() {
+    timing = setInterval(every5sec, 5000);
 }
 
 function every5sec() {
@@ -130,5 +126,5 @@ function every5sec() {
     selectChanged();
     displayMyData();
 }
-myFunction();
+timer();
 
