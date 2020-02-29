@@ -5,9 +5,13 @@ let map = L.map('mapid', { center: [53.35, -6.26], zoom: 6, minZoom: 4, maxZoom:
 //adding tiles for design
 L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png").addTo(map);
 
+
+//setting global variables
 var refinedCountry = [];
 var state = [];
 
+
+//set icons and popup for map
 var orangeIcon = L.icon({
     iconUrl: 'assets/images/circle.png',
     iconSize: [10, 10],
@@ -15,9 +19,10 @@ var orangeIcon = L.icon({
     popupAnchor: [0, 0]
 });
 
+//airborn is yes on load
 document.getElementById("airbutton").checked = true;
 
-//html button function 
+//displays results from airborn radio button and also selected country through draw to map
 function displayMyData() {
     let testingThis = document.getElementsByName("ground");
     if (testingThis[0].checked) {
@@ -38,7 +43,7 @@ function displayMyData() {
     }
 }
 
-
+//clear map and use refined country array to display flgiths. Also excludes data with no value as it breaks within Leaflet.
 function drawToMap() {
     markers.clearLayers();
     for (let i = 0; i < refinedCountry.length; i++) {
@@ -53,9 +58,8 @@ function drawToMap() {
     }
 }
 
-
 //api load
-const api_url = "https://opensky-network.org/api/states/all"
+const api_url = "https://opensky-network.org/api/states/all";
 
 async function testGetData() {
     let response = await fetch(api_url);
@@ -102,7 +106,7 @@ function getData() {
     });
 }
 
-
+//display selected country flights
 document.getElementById("select").addEventListener("change", selectChanged);
 
 function selectChanged() {
