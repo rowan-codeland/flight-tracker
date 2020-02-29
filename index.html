@@ -20,15 +20,23 @@
 <body>
 	<div id="mapid"></div>
 
-	<h4>Country of Origin</h4>
-	<select id ="select">
-        <option value ="Ireland">Origin Country</option>
-    </select>
-	<div id ="selectionDiv">
-		<h4>Only display airborne flights?</h4>
-		<input type="radio" name="ground" id="airbutton" value="true">Yes<br>
-		<input type="radio" name="ground" id="groundbutton" value="false">No
+	<div id="selection-section">
+		<div class ="grid-items">
+			<h4>Country of Origin</h4>
+			<br>
+			<select id ="select">
+                <option value ="Ireland">Please select a country</option>
+            </select>
+	    </div>
+		<div class = "grid-items">
+			<h4>Only display airborne flights?</h4>
+			<br>
+			<input type="radio" name="ground" id="airbutton" value="true">Yes<br>
+			<input type="radio" name="ground" id="groundbutton" value="false">No
     </div>
+		</div>
+
+        	<h6>(Please allow 10 seconds for map to update)</h6>
 
 		<script src="assets/js/main.js"></script>
 </body>

@@ -1,16 +1,30 @@
+body {
+    font-family: arial;
+    text-align: center;
+}
+
+#selection-section {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.grid-items {
+    text-align: center;
+}
+
 #mapid { 
     height: 80vh; 
     margin: 0px;
-}
-
-#selectionDiv{
-    height: 20vh; 
 }
 
 @media only screen and (max-width: 800px) {
     #mapid { 
     height: 60vh; 
     margin: 0px;
+}
+    #selection-section {
+    display: grid;
+    grid-template-columns: auto;
 }
 }
 
