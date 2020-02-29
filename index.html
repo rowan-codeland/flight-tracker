@@ -13,7 +13,7 @@
 		crossorigin=""></script>
 	<script src="assets/js/rslider.js"></script>
 	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/css/rslider.css">
+
 	<title>Flight Tracker</title>
 </head>
 
@@ -21,19 +21,16 @@
 	<div id="mapid"></div>
 
 	<h4>Country of Origin</h4>
-
 	<select id ="select">
-        <option value ="">Origin Country</option>
+        <option value ="Ireland">Origin Country</option>
     </select>
+	<div>
+		<h4>Only display airborne flights?</h4>
+		<input type="radio" name="ground" id="airbutton" value="true">Yes<br>
+		<input type="radio" name="ground" id="groundbutton" value="false">No
+    </div>
 
-	<h4>Only display airborne flights?</h4>
-	<input type="radio" name="ground" id="airbutton" value="true">Yes<br>
-	<input type="radio" name="ground" id="falsebutton" value="false">No
-
-
-	<!-- ignore for now <input type="text" id="sampleSlider"> -->
-
-	<script src="assets/js/main.js"></script>
+		<script src="assets/js/main.js"></script>
 </body>
 
 </html>
