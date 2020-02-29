@@ -83,7 +83,9 @@ The website was tested mobile first. Starting at the most popular and working it
 
 ## Deployment
 
-The site is deployed live from the master branch to github pages and accesible [here](https://rowancopeland.github.io/patrick-bateman/)
+This webapp is hosted using GitHub pages, deployed directly from the master branch. Every time a new commit is pushed the deployed webapp will update.
+
+If you want to run this on your own machine or within your own IDE, type git clone https://github.com/rowan-codeland/flight-tracker.git into your terminal. Please then type "git remote rm origin" to sever ties with the original.
 
 ## Credits
 
